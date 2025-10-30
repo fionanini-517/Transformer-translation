@@ -1,0 +1,163 @@
+{
+  "learning_rate": {
+    "0.0001": {
+      "final_accuracy": 0.44612832692452686,
+      "final_loss": 3.2671670094132423,
+      "convergence_epoch": 10
+    },
+    "0.0005": {
+      "final_accuracy": 0.6238407600090478,
+      "final_loss": 2.076267570257187,
+      "convergence_epoch": 10
+    },
+    "0.001": {
+      "final_accuracy": 0.650154565332127,
+      "final_loss": 1.9102297313511372,
+      "convergence_epoch": 10
+    },
+    "0.005": {
+      "final_accuracy": 0.49566463092814594,
+      "final_loss": 2.7596883550286293,
+      "convergence_epoch": 10
+    },
+    "0.01": {
+      "final_accuracy": 0.36386941114378346,
+      "final_loss": 3.6217939779162407,
+      "convergence_epoch": 10
+    }
+  },
+  "model_dimension": {
+    "64": {
+      "final_accuracy": 0.6154716127572948,
+      "final_loss": 2.098715953528881,
+      "convergence_epoch": 10,
+      "parameters": 1660736
+    },
+    "128": {
+      "final_accuracy": 0.6472894518585539,
+      "final_loss": 1.898949321359396,
+      "convergence_epoch": 10,
+      "parameters": 3542848
+    },
+    "256": {
+      "final_accuracy": 0.6122295106687778,
+      "final_loss": 2.057519856840372,
+      "convergence_epoch": 10,
+      "parameters": 7995200
+    },
+    "512": {
+      "final_accuracy": 0.5276332654753827,
+      "final_loss": 2.55218356102705,
+      "convergence_epoch": 10,
+      "parameters": 19652416
+    }
+  },
+  "attention_heads": {
+    "1": {
+      "final_accuracy": 0.6040865565859911,
+      "final_loss": 2.166835691779852,
+      "convergence_epoch": 10
+    },
+    "2": {
+      "final_accuracy": 0.6145668400814296,
+      "final_loss": 2.105305429548025,
+      "convergence_epoch": 10
+    },
+    "4": {
+      "final_accuracy": 0.627610646158486,
+      "final_loss": 2.052713192999363,
+      "convergence_epoch": 10
+    },
+    "8": {
+      "final_accuracy": 0.6189399080147779,
+      "final_loss": 2.11455075442791,
+      "convergence_epoch": 10
+    },
+    "16": {
+      "final_accuracy": 0.6361305888562165,
+      "final_loss": 1.9534474574029446,
+      "convergence_epoch": 10
+    }
+  },
+  "layers_depth": {
+    "1": {
+      "final_accuracy": 0.6450275201688909,
+      "final_loss": 1.927147064357996,
+      "convergence_epoch": 10,
+      "parameters": 3542848
+    },
+    "2": {
+      "final_accuracy": 0.6273844529895197,
+      "final_loss": 2.03304822742939,
+      "convergence_epoch": 10,
+      "parameters": 4005696
+    },
+    "3": {
+      "final_accuracy": 0.557792354670889,
+      "final_loss": 2.3779335394501686,
+      "convergence_epoch": 10,
+      "parameters": 4468544
+    },
+    "4": {
+      "final_accuracy": 0.3915403754806605,
+      "final_loss": 3.3088925406336784,
+      "convergence_epoch": 10,
+      "parameters": 4931392
+    },
+    "6": {
+      "final_accuracy": 0.1305134584935535,
+      "final_loss": 7.515020027756691,
+      "convergence_epoch": 10,
+      "parameters": 5857088
+    }
+  },
+  "dropout_rate": {
+    "0.0": {
+      "final_accuracy": 0.6436703611550931,
+      "final_loss": 1.9693616218864918,
+      "convergence_epoch": 10
+    },
+    "0.1": {
+      "final_accuracy": 0.6409560431274975,
+      "final_loss": 1.915638629347086,
+      "convergence_epoch": 10
+    },
+    "0.2": {
+      "final_accuracy": 0.5969991706250471,
+      "final_loss": 2.216371286660433,
+      "convergence_epoch": 10
+    },
+    "0.3": {
+      "final_accuracy": 0.5386413330317424,
+      "final_loss": 2.577199250459671,
+      "convergence_epoch": 10
+    },
+    "0.5": {
+      "final_accuracy": 0.38528236447259295,
+      "final_loss": 3.6345316246151924,
+      "convergence_epoch": 10
+    }
+  },
+  "batch_size": {
+    "16": {
+      "final_accuracy": 0.6485712131493628,
+      "final_loss": 1.9188445061445236,
+      "convergence_epoch": 10
+    },
+    "32": {
+      "final_accuracy": 0.6450275201688909,
+      "final_loss": 1.9221776723861694,
+      "convergence_epoch": 10
+    },
+    "64": {
+      "final_accuracy": 0.6399758727286436,
+      "final_loss": 1.9490791223943233,
+      "convergence_epoch": 10
+    },
+    "128": {
+      "final_accuracy": 0.6512101334539697,
+      "final_loss": 1.8861399330198765,
+      "convergence_epoch": 10
+    }
+  }
+}

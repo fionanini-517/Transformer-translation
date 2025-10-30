@@ -1,4 +1,6 @@
 import os
+import sys
+
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 import torch
 import torch.nn as nn
@@ -142,65 +144,6 @@ class Trainer:
         ablation_results = ablation_study(self.de_vocab, self.en_vocab)
         return ablation_results
 
-    # def show_translation_examples(self, num_examples=5):
-    #     """展示翻译样例"""
-    #     self.model.eval()
-    #
-    #     print("\n" + "=" * 60)
-    #     print("翻译样例展示")
-    #     print("=" * 60)
-    #
-    #     # 获取词汇表反向映射
-    #     idx_to_word_de = {idx: word for word, idx in self.de_vocab.items()}
-    #     idx_to_word_en = {idx: word for word, idx in self.en_vocab.items()}
-    #
-    #     examples_shown = 0
-    #     data_iter = iter(self.val_loader)  # 使用验证集数据
-    #
-    #     with torch.no_grad():
-    #         while examples_shown < num_examples:
-    #             try:
-    #                 batch = next(data_iter)
-    #             except StopIteration:
-    #                 break
-    #
-    #             src = batch['src'].to(self.config.device)
-    #             tgt = batch['tgt'].to(self.config.device)
-    #
-    #             # 使用贪心解码生成翻译
-    #             translations = self.greedy_decode(src, max_length=self.config.max_length)
-    #
-    #             for i in range(src.size(0)):
-    #                 if examples_shown >= num_examples:
-    #                     break
-    #
-    #                 # 源句子（德语）
-    #                 src_indices = src[i].cpu().numpy()
-    #                 src_sentence = ' '.join([idx_to_word_de[idx] for idx in src_indices
-    #                                          if idx not in [Config.PAD_IDX, Config.SOS_IDX, Config.EOS_IDX]])
-    #
-    #                 # 目标句子（英语真实值）
-    #                 tgt_indices = tgt[i].cpu().numpy()
-    #                 tgt_sentence = ' '.join([idx_to_word_en[idx] for idx in tgt_indices
-    #                                          if idx not in [Config.PAD_IDX, Config.SOS_IDX, Config.EOS_IDX]])
-    #
-    #                 # 模型预测
-    #                 pred_indices = translations[i].cpu().numpy()
-    #                 pred_sentence = ' '.join([idx_to_word_en[idx] for idx in pred_indices
-    #                                           if idx not in [Config.PAD_IDX, Config.SOS_IDX, Config.EOS_IDX]])
-    #
-    #                 print(f"样例 {examples_shown + 1}:")
-    #                 print(f"  德语: {src_sentence}")
-    #                 print(f"  真实英语: {tgt_sentence}")
-    #                 print(f"  预测英语: {pred_sentence}")
-    #
-    #                 # 简单判断是否正确（完全匹配）
-    #                 is_correct = pred_sentence == tgt_sentence
-    #                 print(f"  是否正确: {'正确' if is_correct else '错误'}")
-    #                 print("-" * 50)
-    #
-    #                 examples_shown += 1
-
     def greedy_decode(self, src, max_length=50):
         """贪心解码生成翻译"""
         batch_size = src.size(0)
@@ -229,6 +172,11 @@ class Trainer:
                 break
 
         return tgt
+def hyperparameter_analysis():
+    """只运行超参敏感性分析"""
+    from hyperparameter_analysis import run_hyperparameter_analysis
+    return run_hyperparameter_analysis()
+
 def main():
     # 最简单的种子设置
     torch.manual_seed(42)
@@ -259,8 +207,6 @@ def main():
     trainer = Trainer(model, train_loader, val_loader, de_vocab, en_vocab)
     trainer.train()
 
-    # 展示翻译样例
-    # trainer.show_translation_examples(num_examples=8)
 
     # 绘制训练结果
     plot_training_results(trainer.train_losses, trainer.val_losses, trainer.accuracies)
@@ -271,6 +217,13 @@ def main():
     # 进行消融实验
     trainer.run_ablation_study()
 
+    print("\n开始超参敏感性分析...")
+    from hyperparameter_analysis import run_hyperparameter_analysis
+    hyperparameter_results = run_hyperparameter_analysis()
+    print("\n所有实验完成！")
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == '--hyperparam':
+        hyperparameter_analysis()
+    else:
+        main()

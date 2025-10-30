@@ -1,9 +1,15 @@
+import os
+
 import torch
 
 
 class Config:
     # 数据配置
-    data_path = "../data/multi30k"
+    # 获取当前脚本（config.py）的绝对路径
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # 拼接数据路径（假设data在src目录同级，若在src内则改为"data/multi30k"）
+    data_path = os.path.join(current_dir, "../data/multi30k")  # 根据实际位置调整
+    # data_path2="../data/multi30k"
     max_length = 50
     batch_size = 32
 
